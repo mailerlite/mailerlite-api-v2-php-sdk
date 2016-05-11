@@ -1,5 +1,7 @@
 #Mailerlite API v2 wrapper for PHP
 
+Find more examples and information about MailerLite API v2 here: [http://developers.mailerlite.com](http://developers.mailerlite.com)
+
 ##Usage examples
 
 #### Groups API
