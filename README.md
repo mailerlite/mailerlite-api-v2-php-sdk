@@ -2,13 +2,14 @@
 
 Find more examples and information about MailerLite API v2 here: [http://developers.mailerlite.com](http://developers.mailerlite.com)
 
+##Getting started
+
+
 ##Usage examples
 
 #### Groups API
 
 ```php
-require_once 'vendor/autoload.php';
-
 $groupsApi = (new \MailerLiteApi\Mailerlite('your-api-key'))->groups();
 
 $newGroup = $groupsApi->create(['name' => 'New group']); // creates group and returns it
@@ -23,8 +24,6 @@ $groupsApi->delete(123); // deletes group
 #### Multiple APIs at once
 
 ```php
-require_once 'vendor/autoload.php';
-
 $mailerliteClient = new \MailerLiteApi\Mailerlite('your-api-key');
 
 $groupsApi = $mailerliteClient->groups();
@@ -37,8 +36,6 @@ $fields = $fieldsApi->get(); // returns array of fields
 ##Use your preferred HTTP client
 
 ```php
-require_once 'vendor/autoload.php';
-
 $guzzle = new \GuzzleHttp\Client();
 $guzzleClient = new \Http\Adapter\Guzzle6\Client($guzzle);
 
