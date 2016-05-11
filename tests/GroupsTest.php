@@ -9,7 +9,7 @@ class GroupsTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->groupsApi = (new Mailerlite('23e2d1467be1e774392b6622205b2ff2'))->groups();
+        $this->groupsApi = (new Mailerlite('fc7b8c5b32067bcd47cafb5f475d2fe9'))->groups();
     }
 
     /** @test **/
