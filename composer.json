@@ -1,0 +1,23 @@
+{
+    "name": "mailerlite/api-v2",
+    "description": "MailerLite API v2 PHP client",
+    "homepage": "https://github.com/mailerlite/api-v2-php-client",
+    "license": "MIT",
+    "require": {
+        "php" : "^5.4|^7.0",
+        "guzzlehttp/psr7": "~1.2",
+        "php-http/httplug": "^1.0",
+        "php-http/curl-client": "^1.4",
+        "php-http/message": "^1.2"
+    },
+    "require-dev": {
+        "php-http/guzzle6-adapter": "^1.0",
+        "phpunit/phpunit": "4.8.*",
+        "mockery/mockery": "^0.9.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "MailerLiteApi\\": "src"
+        }
+    }
+}
