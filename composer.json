@@ -1,5 +1,5 @@
 {
-    "name": "mailerlite/mailerlite-api-v2-php-sdk2",
+    "name": "mailerlite/mailerlite-api-v2-php-sdk",
     "description": "MailerLite API v2 PHP SDK",
     "homepage": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk",
     "license": "MIT",
