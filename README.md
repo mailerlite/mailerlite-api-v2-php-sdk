@@ -77,7 +77,7 @@ $guzzleClient = new \Http\Adapter\Guzzle6\Client($guzzle);
 $mailerliteClient = new \MailerLiteApi\Mailerlite('your-api-key', $guzzleClient);
 ```
 
-# Support
+## Support
 
 In case you find any bugs, submit an issue directly here in GitHub.
 
