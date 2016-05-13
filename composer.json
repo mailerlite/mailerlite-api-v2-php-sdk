@@ -12,12 +12,17 @@
     },
     "require-dev": {
         "php-http/guzzle6-adapter": "^1.0",
-        "phpunit/phpunit": "4.8.*",
+        "phpunit/phpunit": "5.3.*",
         "mockery/mockery": "^0.9.4"
     },
     "autoload": {
         "psr-4": {
             "MailerLiteApi\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MailerLiteApi\\Tests\\": "tests/"
         }
     }
 }

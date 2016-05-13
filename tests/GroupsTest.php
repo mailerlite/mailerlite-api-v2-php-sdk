@@ -1,15 +1,33 @@
 <?php
 
+namespace MailerLiteApi\Tests;
+
 use MailerLiteApi\Mailerlite;
 use MailerLiteApi\Api\Groups;
 
-class GroupsTest extends PHPUnit_Framework_TestCase
+class GroupsTest extends MlTestCase
 {
     protected $groupsApi;
 
+    protected $testGroup;
+
+    protected $testGroupEmpty;
+
+    protected $testSubscribers;
+
     protected function setUp()
     {
-        $this->groupsApi = (new Mailerlite('fc7b8c5b32067bcd47cafb5f475d2fe9'))->groups();
+        $this->groupsApi = (new Mailerlite(API_KEY))->groups();
+        $this->testGroup = $this->createGroup();
+        $this->testGroupEmpty = $this->createGroup('Empty Group');
+        $this->testSubscribers = $this->addSubscribers($this->testGroup->id);
+        $this->addSubscriber($this->testGroup->id, uniqid() . '@mailerlite-test.dev', 'unsubscribed');
+    }
+
+    protected function tearDown()
+    {
+        $this->groupsApi->delete($this->testGroup->id);
+        $this->groupsApi->delete($this->testGroupEmpty->id);
     }
 
     /** @test **/
@@ -23,15 +41,17 @@ class GroupsTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function check_single_group_data()
     {
-        $group = $this->groupsApi->find(2590376);
+        $group = $this->groupsApi->find($this->testGroup->id);
 
         $this->assertTrue(is_numeric($group->id) && isset($group->name));
+
+        $this->groupsApi->delete($this->testGroup->id);
     }
 
     /** @test **/
     public function check_group_subscribers_data()
     {
-        $subscribers = $this->groupsApi->getSubscribers(2590376);
+        $subscribers = $this->groupsApi->getSubscribers($this->testGroup->id);
 
         $this->assertTrue(isset($subscribers[0]->id) && isset($subscribers[0]->email));
     }
@@ -39,7 +59,7 @@ class GroupsTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function check_group_subscribers_unsubscribed_data()
     {
-        $subscribers = $this->groupsApi->getSubscribers(2590376, 'unsubscribed');
+        $subscribers = $this->groupsApi->getSubscribers($this->testGroup->id, 'unsubscribed');
 
         $this->assertTrue( ! empty($subscribers));
     }
@@ -55,7 +75,7 @@ class GroupsTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function check_group_subscribers_data_with_limit()
     {
-        $subscribers = $this->groupsApi->getSubscribers(2590376, null, ['limit' => 2]);
+        $subscribers = $this->groupsApi->getSubscribers($this->testGroup->id, null, ['limit' => 2]);
 
         $this->assertEquals(2, count($subscribers));
     }
@@ -71,45 +91,33 @@ class GroupsTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function create_group()
     {
-        $group = $this->groupsApi->create(['name' => 'test group']);
+        $group = $this->testGroup;
 
-        $this->assertEquals($group->name, 'test group');
+        $this->assertEquals($group->name, 'New Group');
     }
 
     /** @test **/
     public function update_group()
     {
-        $group = $this->groupsApi->update(3884615, ['name' => 'test group updated']);
+        $updateData = [
+            'name' => 'Awesome Group'
+        ];
 
-        $this->assertEquals($group->name, 'test group updated');
+        $group = $this->groupsApi->update($this->testGroup->id, $updateData);
+
+        $this->assertEquals($group->name, $updateData['name']);
     }
 
     /** @test **/
-    public function add_subscriber()
+    public function add_and_remove_subscriber()
     {
-        $subscriberData = [
-            'email' => 'testtesttest@mailerlite.com',
-            'name' => 'testing testing'
-        ];
+        $subscriber = $this->addSubscriber($this->testGroup->id);
 
-        $addedSubscriber = $this->groupsApi->addSubscriber(3884615, $subscriberData);
+        $addedSubscriber = $this->groupsApi->addSubscriber($this->testGroup->id, $subscriber);
 
-        $this->assertEquals($addedSubscriber->email, $subscriberData['email']);
-    }
+        $this->assertTrue(isset($subscriber->email) && !empty($subscriber));
 
-    /** @test **/
-    public function remove_subscriber()
-    {
-        $subscriberData = [
-            'email' => 'deletingtest@mailerlite.com',
-            'name' => 'testing deleting'
-        ];
-
-        $addedSubscriber = $this->groupsApi->addSubscriber(3884615, $subscriberData);
-
-        $this->assertEquals($addedSubscriber->email, $subscriberData['email']);
-
-        $deleted = $this->groupsApi->removeSubscriber(3884615, $addedSubscriber->id);
+        $deleted = $this->groupsApi->removeSubscriber($this->testGroup->id, $addedSubscriber->id);
 
         $this->assertEquals($deleted, '');
     }
@@ -117,18 +125,9 @@ class GroupsTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function import_subscribers()
     {
-        $subscribersData = [
-            [
-                'email' => 'batch1@mailerlite.com'
-            ],
-            [
-                'email' => 'batch2@mailerlite.com'
-            ]
-        ];
+        $addedSubscribers = $this->addSubscribers($this->testGroup->id);
 
-        $addedSubscribers = $this->groupsApi->importSubscribers(3884615, $subscribersData);
-
-        $this->assertTrue(isset($addedSubscribers->imported));
+        $this->assertTrue( ! empty($addedSubscribers));
     }
 
 }

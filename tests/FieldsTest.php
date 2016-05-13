@@ -1,15 +1,17 @@
 <?php
 
+namespace MailerLiteApi\Tests;
+
 use MailerLiteApi\Mailerlite;
 use MailerLiteApi\Resources\Fields;
 
-class FieldsTest extends PHPUnit_Framework_TestCase
+class FieldsTest extends MlTestCase
 {
     protected $fieldsApi;
 
     protected function setUp()
     {
-        $this->fieldsApi = (new Mailerlite('fc7b8c5b32067bcd47cafb5f475d2fe9'))->fields();
+        $this->fieldsApi = (new Mailerlite(API_KEY))->fields();
     }
 
     /** @test **/

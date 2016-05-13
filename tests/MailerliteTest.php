@@ -1,8 +1,10 @@
 <?php
 
+namespace MailerLiteApi\Tests;
+
 use MailerLiteApi\Mailerlite;
 
-class MailerliteTest extends PHPUnit_Framework_TestCase
+class MailerliteTest extends MlTestCase
 {
     /** @test **/
     public function invalid_api_key()

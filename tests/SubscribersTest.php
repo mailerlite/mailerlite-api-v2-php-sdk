@@ -1,31 +1,49 @@
 <?php
 
+namespace MailerLiteApi\Tests;
+
 use MailerLiteApi\Mailerlite;
 use MailerLiteApi\Resources\Fields;
 
-class SubscribersTest extends PHPUnit_Framework_TestCase
+class SubscribersTest extends MlTestCase
 {
+    protected $groupsApi;
+
     protected $subscribersApi;
+
+    protected $testGroup;
+
+    protected $testSubscriber;
 
     protected function setUp()
     {
-        $this->subscribersApi = (new Mailerlite('fc7b8c5b32067bcd47cafb5f475d2fe9'))->subscribers();
+        $ml = new Mailerlite(API_KEY);
+        $this->groupsApi = $ml->groups();
+        $this->subscribersApi = $ml->subscribers();
+
+        $this->testGroup = $this->createGroup();
+        $this->testSubscriber = $this->addSubscriber($this->testGroup->id);
+    }
+
+    protected function tearDown()
+    {
+        $this->groupsApi->delete($this->testGroup->id);
     }
 
     /** @test **/
     public function get_subscriber_by_email()
     {
-        $subscriber = $this->subscribersApi->find('testtesttest@mailerlite.com');
+        $subscriber = $this->subscribersApi->find($this->testSubscriber->email);
 
-        $this->assertEquals($subscriber->email, 'testtesttest@mailerlite.com');
+        $this->assertEquals($subscriber->email, $this->testSubscriber->email);
     }
 
     /** @test **/
     public function get_subscriber_by_id()
     {
-        $subscriber = $this->subscribersApi->find(1413018993);
+        $subscriber = $this->subscribersApi->find($this->testSubscriber->id);
 
-        $this->assertEquals($subscriber->id, 1413018993);
+        $this->assertEquals($subscriber->id, $this->testSubscriber->id);
     }
 
     /** @test **/
@@ -35,17 +53,17 @@ class SubscribersTest extends PHPUnit_Framework_TestCase
             'type' => 'unsubscribed'
         ];
 
-        $subscriber = $this->subscribersApi->update(1413018993, $subscriberData);
+        $subscriber = $this->subscribersApi->update($this->testSubscriber->id, $subscriberData);
 
         $this->assertEquals($subscriber->type, 'unsubscribed');
 
-        $subscriber = $this->subscribersApi->update(1413018993, ['type' => 'active']);
+        $subscriber = $this->subscribersApi->update($this->testSubscriber->id, ['type' => 'active']);
     }
 
     /** @test **/
     public function search_for_a_subscriber()
     {
-        $subscribers = $this->subscribersApi->search('subscriber updated');
+        $subscribers = $this->subscribersApi->search('mailerlite');
 
         $this->assertTrue(count($subscribers) > 0);
     }

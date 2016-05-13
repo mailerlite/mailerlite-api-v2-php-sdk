@@ -1,12 +1,14 @@
 <?php
 
+namespace MailerLiteApi\Tests;
+
 use MailerLiteApi\Common\RestClient;
 use MailerLiteApi\Common\ApiConstants;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 
-class RestClientTest extends PHPUnit_Framework_TestCase
+class RestClientTest extends MlTestCase
 {
 
     protected $client;
