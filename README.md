@@ -22,7 +22,7 @@ composer require mailerlite/mailerlite-api-v2-php-sdk
 
 ##### Manual (preferable for shared hostings)
 
-This way is preferable only if you are using shared hosting. You will need to download this archive, extract it and place its contents in root folder of your project.
+This way is preferable only if you are using shared hosting. You will need to download [this archive](https://drive.google.com/file/d/0B9O59hz9aOucR0xMcERCSjV1b1U/view?usp=sharing), extract it and place its contents in root folder of your project.
 
 ##Usage examples
 
