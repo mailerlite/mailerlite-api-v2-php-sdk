@@ -1,9 +1,16 @@
 #Mailerlite API v2 wrapper for PHP
 
+Official PHP wrapper for MailerLite API v2.
+
 Find more examples and information about MailerLite API v2 here: [http://developers.mailerlite.com](http://developers.mailerlite.com)
 
 ##Getting started
 
+Write more about:
+- Composer
+- Without composer (download .zip archive)
+- Requirements
+- PSR-7, HTTPlug, Curl, Guzzle, etc. 
 
 ##Usage examples
 
