@@ -1,7 +1,7 @@
 {
     "name": "mailerlite/mailerlite-api-v2-php-sdk2",
     "description": "MailerLite API v2 PHP SDK",
-    "homepage": "https://github.com/mailerlite/api-v2-php-client",
+    "homepage": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk",
     "license": "MIT",
     "require": {
         "php" : "^5.4|^7.0",
