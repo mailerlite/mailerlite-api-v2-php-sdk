@@ -6,9 +6,9 @@ use Http\Client\HttpClient;
 
 use MailerLiteApi\Common\ApiConstants;
 use MailerLiteApi\Common\RestClient;
-use MailerLiteApi\Exceptions\MailerliteSdkException;
+use MailerLiteApi\Exceptions\MailerLiteSdkException;
 
-class Mailerlite {
+class MailerLite {
 
     /**
      * @var null | string

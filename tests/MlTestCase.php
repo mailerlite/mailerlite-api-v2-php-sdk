@@ -2,7 +2,7 @@
 
 namespace MailerLiteApi\Tests;
 
-use MailerLiteApi\Mailerlite;
+use MailerLiteApi\MailerLite;
 use MailerLiteApi\Api\Groups;
 
 class MlTestCase extends \PHPUnit_Framework_TestCase

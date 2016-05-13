@@ -2,15 +2,15 @@
 
 namespace MailerLiteApi\Tests;
 
-use MailerLiteApi\Mailerlite;
+use MailerLiteApi\MailerLite;
 
-class MailerliteTest extends MlTestCase
+class MailerLiteTest extends MlTestCase
 {
     /** @test **/
     public function invalid_api_key()
     {
-        $this->setExpectedException('\\MailerLiteApi\\Exceptions\\MailerliteSdkException');
+        $this->setExpectedException('\\MailerLiteApi\\Exceptions\\MailerLiteSdkException');
 
-        $ml = new Mailerlite();
+        $ml = new MailerLite();
     }
 }

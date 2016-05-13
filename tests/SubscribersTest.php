@@ -2,7 +2,7 @@
 
 namespace MailerLiteApi\Tests;
 
-use MailerLiteApi\Mailerlite;
+use MailerLiteApi\MailerLite;
 use MailerLiteApi\Resources\Fields;
 
 class SubscribersTest extends MlTestCase
@@ -17,7 +17,7 @@ class SubscribersTest extends MlTestCase
 
     protected function setUp()
     {
-        $ml = new Mailerlite(API_KEY);
+        $ml = new MailerLite(API_KEY);
         $this->groupsApi = $ml->groups();
         $this->subscribersApi = $ml->subscribers();
 

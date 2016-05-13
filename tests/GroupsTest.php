@@ -2,7 +2,7 @@
 
 namespace MailerLiteApi\Tests;
 
-use MailerLiteApi\Mailerlite;
+use MailerLiteApi\MailerLite;
 use MailerLiteApi\Api\Groups;
 
 class GroupsTest extends MlTestCase
@@ -17,7 +17,7 @@ class GroupsTest extends MlTestCase
 
     protected function setUp()
     {
-        $this->groupsApi = (new Mailerlite(API_KEY))->groups();
+        $this->groupsApi = (new MailerLite(API_KEY))->groups();
         $this->testGroup = $this->createGroup();
         $this->testGroupEmpty = $this->createGroup('Empty Group');
         $this->testSubscribers = $this->addSubscribers($this->testGroup->id);

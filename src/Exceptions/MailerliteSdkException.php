@@ -4,4 +4,4 @@ namespace MailerLiteApi\Exceptions;
 
 use Exception;
 
-class MailerliteSdkException extends Exception {}
+class MailerLiteSdkException extends Exception {}
