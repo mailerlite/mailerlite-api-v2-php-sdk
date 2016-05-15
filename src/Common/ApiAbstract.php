@@ -157,7 +157,7 @@ abstract class ApiAbstract {
 
     /**
      * Set where conditions
-     * 
+     *
      * @param  [type] $column
      * @param  [type] $operator
      * @param  [type] $value
@@ -211,7 +211,7 @@ abstract class ApiAbstract {
 
         if ( ! empty($this->_orders) && is_array($this->_orders)) {
             foreach ($this->_orders as $field => $order) {
-                $params['order'][$field] = $order;
+                $params['order_by'][$field] = $order;
             }
         }
 
