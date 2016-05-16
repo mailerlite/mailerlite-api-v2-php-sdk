@@ -3,6 +3,8 @@
     "description": "MailerLite API v2 PHP SDK",
     "homepage": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk",
     "license": "MIT",
+    "keywords": ["mailerlite", "sdk", "email", "marketing"],
+    "type": "library",
     "require": {
         "php" : "^5.4|^7.0",
         "guzzlehttp/psr7": "~1.2",

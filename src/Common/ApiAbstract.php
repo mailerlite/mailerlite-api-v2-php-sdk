@@ -185,6 +185,10 @@ abstract class ApiAbstract {
      */
     public function generateCollection($items)
     {
+        if ( ! is_array($items)) {
+            $items = [$items];
+        }
+
         return new Collection($items);
     }
 
