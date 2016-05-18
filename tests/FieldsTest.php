@@ -3,7 +3,7 @@
 namespace MailerLiteApi\Tests;
 
 use MailerLiteApi\MailerLite;
-use MailerLiteApi\Resources\Fields;
+use MailerLiteApi\Api\Fields;
 
 class FieldsTest extends MlTestCase
 {

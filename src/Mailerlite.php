@@ -66,6 +66,14 @@ class MailerLite {
     }
 
     /**
+     * @return \MailerLiteApi\Api\Campaigns
+     */
+    public function campaigns()
+    {
+        return new \MailerLiteApi\Api\Campaigns($this->restClient);
+    }
+
+    /**
      * @param  string $version
      * @return string
      */
