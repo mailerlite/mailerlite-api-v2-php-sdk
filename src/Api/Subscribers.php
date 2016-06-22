@@ -19,6 +19,8 @@ class Subscribers extends ApiAbstract {
     {
         $this->endpoint .= $subscriberId . '/groups';
 
+        $params = array_merge($this->prepareParams(), $params);
+
         $response = $this->restClient->get($endpoint, $params);
 
         return $response['body'];
@@ -40,6 +42,8 @@ class Subscribers extends ApiAbstract {
             $this->endpoint .= '/' . $type;
         }
 
+        $params = array_merge($this->prepareParams(), $params);
+
         $response = $this->restClient->get($endpoint, $params);
 
         return $response['body'];
@@ -49,13 +53,15 @@ class Subscribers extends ApiAbstract {
      * Seach for a subscriber by email or custom field value
      *
      * @param  string $query
-     * @return [type]        
+     * @return [type]
      */
     public function search($query)
     {
         $this->endpoint .= '/search';
 
-        $response = $this->restClient->get($this->endpoint, ['query' => $query]);
+        $params = array_merge($this->prepareParams(), ['query' => $query]);
+
+        $response = $this->restClient->get($this->endpoint, $params);
 
         return $response['body'];
     }

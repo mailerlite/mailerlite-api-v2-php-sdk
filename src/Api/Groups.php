@@ -23,6 +23,8 @@ class Groups extends ApiAbstract {
             $endpoint .=  '/' . $type;
         }
 
+        $params = array_merge($this->prepareParams(), $params);
+
         $response = $this->restClient->get($endpoint, $params);
 
         return $response['body'];
