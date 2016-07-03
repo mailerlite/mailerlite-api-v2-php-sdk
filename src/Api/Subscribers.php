@@ -17,7 +17,7 @@ class Subscribers extends ApiAbstract {
      */
     public function getGroups($subscriberId, $params = [])
     {
-        $this->endpoint .= $subscriberId . '/groups';
+        $endpoint = $this->endpoint . '/' . $subscriberId . '/groups';
 
         $params = array_merge($this->prepareParams(), $params);
 
@@ -36,10 +36,10 @@ class Subscribers extends ApiAbstract {
      */
     public function getActivity($subscriberId, $type = null, $params = [])
     {
-        $this->endpoint .= $subscriberId . '/activity';
+        $endpoint = $this->endpoint . '/' . $subscriberId . '/activity';
 
         if ($type !== null) {
-            $this->endpoint .= '/' . $type;
+            $endpoint .= '/' . $type;
         }
 
         $params = array_merge($this->prepareParams(), $params);
@@ -57,11 +57,11 @@ class Subscribers extends ApiAbstract {
      */
     public function search($query)
     {
-        $this->endpoint .= '/search';
+        $endpoint = $this->endpoint . '/search';
 
         $params = array_merge($this->prepareParams(), ['query' => $query]);
 
-        $response = $this->restClient->get($this->endpoint, $params);
+        $response = $this->restClient->get($endpoint, $params);
 
         return $response['body'];
     }
