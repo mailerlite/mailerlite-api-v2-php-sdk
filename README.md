@@ -6,7 +6,7 @@ You can find more examples and information about MailerLite API v2 here: [http:/
 
 ## Getting started
 
-In order to use this library you need to have at least PHP 5.4 version.
+In order to use this library you need to have at least PHP 5.6 version.
 
 There are two ways to use MailerLite PHP SDK:
 
