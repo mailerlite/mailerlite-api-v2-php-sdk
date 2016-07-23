@@ -1,6 +1,6 @@
 <?php
 
-namespace MailerLiteApi\Tests;
+namespace MailerLiteApi\tests;
 
 use MailerLiteApi\MailerLite;
 use MailerLiteApi\Api\Groups;
@@ -21,7 +21,7 @@ class GroupsTest extends MlTestCase
         $this->testGroup = $this->createGroup();
         $this->testGroupEmpty = $this->createGroup('Empty Group');
         $this->testSubscribers = $this->addSubscribers($this->testGroup->id);
-        $this->addSubscriber($this->testGroup->id, uniqid() . '@mailerlite-test.dev', 'unsubscribed');
+        $this->addSubscriber($this->testGroup->id, uniqid().'@mailerlite-test.dev', 'unsubscribed');
     }
 
     protected function tearDown()
@@ -61,7 +61,7 @@ class GroupsTest extends MlTestCase
     {
         $subscribers = $this->groupsApi->getSubscribers($this->testGroup->id, 'unsubscribed');
 
-        $this->assertTrue( ! empty($subscribers));
+        $this->assertTrue(!empty($subscribers));
     }
 
     /** @test **/
@@ -100,7 +100,7 @@ class GroupsTest extends MlTestCase
     public function update_group()
     {
         $updateData = [
-            'name' => 'Awesome Group'
+            'name' => 'Awesome Group',
         ];
 
         $group = $this->groupsApi->update($this->testGroup->id, $updateData);
@@ -127,7 +127,6 @@ class GroupsTest extends MlTestCase
     {
         $addedSubscribers = $this->addSubscribers($this->testGroup->id);
 
-        $this->assertTrue( ! empty($addedSubscribers));
+        $this->assertTrue(!empty($addedSubscribers));
     }
-
 }

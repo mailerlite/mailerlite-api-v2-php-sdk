@@ -2,15 +2,8 @@
 
 namespace MailerLiteApi\Common;
 
-use ArrayAccess;
-use Exception;
-use GuzzleHttp\Psr7\Request;
-use MailerLiteApi\Common\Collection;
-use MailerLiteApi\Common\Resource;
-use MailerLiteApi\Common\RestClient;
-
-abstract class ApiAbstract {
-
+abstract class ApiAbstract
+{
     protected $restClient;
 
     protected $endpoint;
@@ -29,15 +22,17 @@ abstract class ApiAbstract {
     }
 
     /**
-     * Get collection of items
-     * @param  array $fields
+     * Get collection of items.
+     *
+     * @param array $fields
+     *
      * @return [type]
      */
     public function get($fields = ['*'])
     {
         $params = $this->prepareParams();
 
-        if ( ! empty($fields) && is_array($fields) && $fields != ['*']) {
+        if (!empty($fields) && is_array($fields) && $fields != ['*']) {
             $params['fields'] = $fields;
         }
 
@@ -49,9 +44,10 @@ abstract class ApiAbstract {
     }
 
     /**
-     * Get single item
+     * Get single item.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return [type]
      */
     public function find($id)
@@ -60,66 +56,71 @@ abstract class ApiAbstract {
             throw new \Exception('ID must be set');
         }
 
-        $response = $this->restClient->get($this->endpoint . '/' . $id);
+        $response = $this->restClient->get($this->endpoint.'/'.$id);
 
         return $response['body'];
     }
 
     /**
-     * Create new item
+     * Create new item.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return [type]
      */
     public function create($data)
     {
         $response = $this->restClient->post($this->endpoint, $data);
+
         return $response['body'];
     }
 
     /**
-     * Update an item
+     * Update an item.
      *
-     * @param  int   $id
-     * @param  array $data
+     * @param int   $id
+     * @param array $data
+     *
      * @return [type]
      */
     public function update($id, $data)
     {
-        $response = $this->restClient->put($this->endpoint . '/' . $id, $data);
+        $response = $this->restClient->put($this->endpoint.'/'.$id, $data);
 
         return $response['body'];
     }
 
     /**
-     * Delete an item
+     * Delete an item.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return [type]
      */
     public function delete($id)
     {
-        $response = $this->restClient->delete($this->endpoint . '/' . $id);
+        $response = $this->restClient->delete($this->endpoint.'/'.$id);
 
         return $response['body'];
     }
 
     /**
-     * Return only count of items
+     * Return only count of items.
      *
      * @return [type]
      */
     public function count()
     {
-        $response = $this->restClient->get($this->endpoint . '/count');
+        $response = $this->restClient->get($this->endpoint.'/count');
 
         return $response['body'];
     }
 
     /**
-     * Set size of limit in query
+     * Set size of limit in query.
      *
-     * @param  [type] $limit
+     * @param [type] $limit
+     *
      * @return [type]
      */
     public function limit($limit)
@@ -130,7 +131,7 @@ abstract class ApiAbstract {
     }
 
     /**
-     * Set size of offset in query
+     * Set size of offset in query.
      *
      * @param [type] $offset
      */
@@ -142,10 +143,11 @@ abstract class ApiAbstract {
     }
 
     /**
-     * Set an order in of items in query
+     * Set an order in of items in query.
      *
-     * @param  [type] $field
-     * @param  string $order
+     * @param [type] $field
+     * @param string $order
+     *
      * @return [type]
      */
     public function orderBy($field, $order = 'ASC')
@@ -156,12 +158,13 @@ abstract class ApiAbstract {
     }
 
     /**
-     * Set where conditions
+     * Set where conditions.
      *
-     * @param  [type] $column
-     * @param  [type] $operator
-     * @param  [type] $value
-     * @param  string $boolean
+     * @param [type] $column
+     * @param [type] $operator
+     * @param [type] $value
+     * @param string $boolean
+     *
      * @return [type]
      */
     public function where(
@@ -178,14 +181,15 @@ abstract class ApiAbstract {
     }
 
     /**
-     * Return collection of objects
+     * Return collection of objects.
      *
-     * @param  [type] $items
+     * @param [type] $items
+     *
      * @return [type]
      */
     public function generateCollection($items)
     {
-        if ( ! is_array($items)) {
+        if (!is_array($items)) {
             $items = [$items];
         }
 
@@ -193,7 +197,7 @@ abstract class ApiAbstract {
     }
 
     /**
-     * Prepare query parameters
+     * Prepare query parameters.
      *
      * @return [type]
      */
@@ -201,19 +205,19 @@ abstract class ApiAbstract {
     {
         $params = [];
 
-        if ( ! empty($this->_where) && is_array($this->_where)) {
+        if (!empty($this->_where) && is_array($this->_where)) {
             $params['filters'] = $this->_where;
         }
 
-        if ( ! empty($this->_offset)) {
+        if (!empty($this->_offset)) {
             $params['offset'] = $this->_offset;
         }
 
-        if ( ! empty($this->_limit)) {
+        if (!empty($this->_limit)) {
             $params['limit'] = $this->_limit;
         }
 
-        if ( ! empty($this->_orders) && is_array($this->_orders)) {
+        if (!empty($this->_orders) && is_array($this->_orders)) {
             foreach ($this->_orders as $field => $order) {
                 $params['order_by'][$field] = $order;
             }
@@ -221,5 +225,4 @@ abstract class ApiAbstract {
 
         return $params;
     }
-
 }

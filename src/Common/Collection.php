@@ -7,8 +7,8 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 
-class Collection implements ArrayAccess, IteratorAggregate, Countable {
-
+class Collection implements ArrayAccess, IteratorAggregate, Countable
+{
     /**
      * The items contained in the collection.
      *
@@ -19,7 +19,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Create a new collection.
      *
-     * @param  array $items
+     * @param array $items
      */
     public function __construct(array $items = [])
     {
@@ -39,17 +39,17 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Create a new collection instance if the value isn't one already.
      *
-     * @param  mixed $items
+     * @param mixed $items
      *
      * @return static
      */
     public static function make($items)
     {
         if (is_null($items)) {
-            return new static;
+            return new static();
         }
 
-        if ($items instanceof Collection) {
+        if ($items instanceof self) {
             return $items;
         }
 
@@ -94,7 +94,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Determine if an item exists at an offset.
      *
-     * @param  mixed $key
+     * @param mixed $key
      *
      * @return bool
      */
@@ -106,7 +106,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Get an item at a given offset.
      *
-     * @param  mixed $key
+     * @param mixed $key
      *
      * @return mixed
      */
@@ -118,10 +118,8 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Set the item at a given offset.
      *
-     * @param  mixed $key
-     * @param  mixed $value
-     *
-     * @return void
+     * @param mixed $key
+     * @param mixed $value
      */
     public function offsetSet($key, $value)
     {
@@ -135,13 +133,10 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Unset the item at a given offset.
      *
-     * @param  string $key
-     *
-     * @return void
+     * @param string $key
      */
     public function offsetUnset($key)
     {
         unset($this->items[$key]);
     }
-
 }

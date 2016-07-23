@@ -1,6 +1,6 @@
 <?php
 
-namespace MailerLiteApi\Tests;
+namespace MailerLiteApi\tests;
 
 use MailerLiteApi\MailerLite;
 use MailerLiteApi\Api\Campaigns;
@@ -20,7 +20,7 @@ class CampaignsTest extends MlTestCase
         $campaignData = [
             'subject' => 'Regular Campaign Subject',
             'type' => 'regular',
-            'groups' => [2984475, 3237221] // TODO: improve this with creating new groups
+            'groups' => [2984475, 3237221], // TODO: improve this with creating new groups
         ];
 
         $campaign = $this->campaignsApi->create($campaignData);
@@ -29,5 +29,4 @@ class CampaignsTest extends MlTestCase
 
         $this->campaignsApi->delete($field->id);
     }
-
 }

@@ -1,16 +1,14 @@
 <?php
 
-namespace MailerLiteApi\Tests;
+namespace MailerLiteApi\tests;
 
 use MailerLiteApi\Common\RestClient;
 use MailerLiteApi\Common\ApiConstants;
-
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 
 class RestClientTest extends MlTestCase
 {
-
     protected $client;
 
     protected function setUp()
@@ -36,7 +34,7 @@ class RestClientTest extends MlTestCase
 
         $userAgent = 'user-agent';
 
-        $this->assertEquals(ApiConstants::SDK_USER_AGENT . '/' . ApiConstants::SDK_VERSION, $response['body']->$userAgent);
+        $this->assertEquals(ApiConstants::SDK_USER_AGENT.'/'.ApiConstants::SDK_VERSION, $response['body']->$userAgent);
     }
 
     /** @test **/
@@ -44,7 +42,7 @@ class RestClientTest extends MlTestCase
     {
         $formData = [
             'foo' => 'bar',
-            'fiz' => 'biz'
+            'fiz' => 'biz',
         ];
 
         $response = $this->client->post('post', $formData);
@@ -57,7 +55,7 @@ class RestClientTest extends MlTestCase
     {
         $formData = [
             'foo' => 'bar',
-            'fiz' => 'biz'
+            'fiz' => 'biz',
         ];
 
         $response = $this->client->put('put', $formData);
@@ -70,7 +68,7 @@ class RestClientTest extends MlTestCase
     {
         $formData = [
             'foo' => 'bar',
-            'fiz' => 'biz'
+            'fiz' => 'biz',
         ];
 
         $response = $this->client->delete('delete');
