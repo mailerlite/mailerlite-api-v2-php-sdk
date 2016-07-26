@@ -27,7 +27,7 @@ class CampaignsTest extends MlTestCase
 
         $this->assertTrue($campaign->campaign_type == $campaignData['type']);
 
-        $this->campaignsApi->delete($field->id);
+        $this->campaignsApi->delete($campaign->id);
     }
 
 }
