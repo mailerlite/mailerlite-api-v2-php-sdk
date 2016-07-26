@@ -1,6 +1,6 @@
 <?php
 
-namespace MailerLiteApi\Tests;
+namespace MailerLiteApi\tests;
 
 use MailerLiteApi\MailerLite;
 use MailerLiteApi\Api\Fields;
@@ -31,5 +31,4 @@ class FieldsTest extends MlTestCase
 
         $this->fieldsApi->delete($field->id);
     }
-
 }

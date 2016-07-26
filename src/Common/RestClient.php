@@ -4,16 +4,13 @@ namespace MailerLiteApi\Common;
 
 use Http\Client\HttpClient;
 use Http\Client\Curl\Client as CurlClient;
-
 use GuzzleHttp\Psr7\Request;
-use MailerLiteApi\Common\ApiConstants;
 use Psr\Http\Message\ResponseInterface;
-
 use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Http\Message\StreamFactory\GuzzleStreamFactory;
 
-class RestClient {
-
+class RestClient
+{
     public $httpClient;
 
     public $apiKey;
@@ -21,8 +18,8 @@ class RestClient {
     public $baseUrl;
 
     /**
-     * @param string $baseUrl
-     * @param string $apiKey
+     * @param string     $baseUrl
+     * @param string     $apiKey
      * @param HttpClient $httpClient
      */
     public function __construct($baseUrl, $apiKey, HttpClient $httpClient = null)
@@ -33,22 +30,24 @@ class RestClient {
     }
 
     /**
-     * Execute GET request
+     * Execute GET request.
      *
-     * @param  string $endpointUri
-     * @param  array $queryString
+     * @param string $endpointUri
+     * @param array  $queryString
+     *
      * @return [type]
      */
     public function get($endpointUri, $queryString = [])
     {
-        return $this->send('GET', $endpointUri . '?' . http_build_query($queryString));
+        return $this->send('GET', $endpointUri.'?'.http_build_query($queryString));
     }
 
     /**
-     * Execute POST request
+     * Execute POST request.
      *
-     * @param  string $endpointUri
-     * @param  array  $data
+     * @param string $endpointUri
+     * @param array  $data
+     *
      * @return [type]
      */
     public function post($endpointUri, $data = [])
@@ -57,10 +56,11 @@ class RestClient {
     }
 
     /**
-     * Execute PUT request
+     * Execute PUT request.
      *
-     * @param  string $endpointUri
-     * @param  array  $putData
+     * @param string $endpointUri
+     * @param array  $putData
+     *
      * @return [type]
      */
     public function put($endpointUri, $putData = [])
@@ -69,9 +69,10 @@ class RestClient {
     }
 
     /**
-     * Execute DELETE request
+     * Execute DELETE request.
      *
-     * @param  string $endpointUri
+     * @param string $endpointUri
+     *
      * @return [type]
      */
     public function delete($endpointUri)
@@ -80,18 +81,19 @@ class RestClient {
     }
 
     /**
-     * Execute HTTP request
+     * Execute HTTP request.
      *
-     * @param  string $method
-     * @param  string $endpointUri
-     * @param  string $body
-     * @param  array $headers
+     * @param string $method
+     * @param string $endpointUri
+     * @param string $body
+     * @param array  $headers
+     *
      * @return [type]
      */
     protected function send($method, $endpointUri, $body = null, array $headers = [])
     {
         $headers = array_merge($headers, self::getDefaultHeaders());
-        $endpointUrl = $this->baseUrl . $endpointUri;
+        $endpointUrl = $this->baseUrl.$endpointUri;
 
         $request = new Request($method, $endpointUrl, $headers, $body);
         $response = $this->getHttpClient()->sendRequest($request);
@@ -100,9 +102,10 @@ class RestClient {
     }
 
     /**
-     * Handle HTTP response
+     * Handle HTTP response.
      *
-     * @param  ResponseInterface $response
+     * @param ResponseInterface $response
+     *
      * @return [type]
      */
     protected function handleResponse(ResponseInterface $response)
@@ -124,7 +127,7 @@ class RestClient {
         if (is_null($this->httpClient)) {
             $options = [
                 CURLOPT_CONNECTTIMEOUT => 10,
-                CURLOPT_SSL_VERIFYPEER => false
+                CURLOPT_SSL_VERIFYPEER => false,
             ];
 
             $this->httpClient = new CurlClient(new GuzzleMessageFactory(), new GuzzleStreamFactory(), $options);
@@ -136,10 +139,11 @@ class RestClient {
     /**
      * @return array
      */
-    protected function getDefaultHeaders() {
+    protected function getDefaultHeaders()
+    {
         return [
-            'User-Agent'          => ApiConstants::SDK_USER_AGENT . '/' . ApiConstants::SDK_VERSION,
-            'X-MailerLite-ApiKey' => $this->apiKey
+            'User-Agent' => ApiConstants::SDK_USER_AGENT.'/'.ApiConstants::SDK_VERSION,
+            'X-MailerLite-ApiKey' => $this->apiKey,
         ];
     }
 }

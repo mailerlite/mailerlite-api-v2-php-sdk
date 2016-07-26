@@ -3,13 +3,12 @@
 namespace MailerLiteApi;
 
 use Http\Client\HttpClient;
-
 use MailerLiteApi\Common\ApiConstants;
 use MailerLiteApi\Common\RestClient;
 use MailerLiteApi\Exceptions\MailerLiteSdkException;
 
-class MailerLite {
-
+class MailerLite
+{
     /**
      * @var null | string
      */
@@ -22,14 +21,14 @@ class MailerLite {
 
     /**
      * @param string|null $apiKey
-     * @param HttpClient $client
+     * @param HttpClient  $client
      */
     public function __construct(
         $apiKey = null,
         HttpClient $httpClient = null
     ) {
         if (is_null($apiKey)) {
-            throw new MailerLiteSdkException("API key is not provided");
+            throw new MailerLiteSdkException('API key is not provided');
         }
 
         $this->apiKey = $apiKey;
@@ -74,12 +73,12 @@ class MailerLite {
     }
 
     /**
-     * @param  string $version
+     * @param string $version
+     *
      * @return string
      */
     public function getBaseUrl($version = ApiConstants::VERSION)
     {
-        return ApiConstants::BASE_URL . $version . '/';
+        return ApiConstants::BASE_URL.$version.'/';
     }
-
 }

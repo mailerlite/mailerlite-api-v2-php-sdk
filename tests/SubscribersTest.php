@@ -1,9 +1,8 @@
 <?php
 
-namespace MailerLiteApi\Tests;
+namespace MailerLiteApi\tests;
 
 use MailerLiteApi\MailerLite;
-use MailerLiteApi\Resources\Fields;
 
 class SubscribersTest extends MlTestCase
 {
@@ -50,7 +49,7 @@ class SubscribersTest extends MlTestCase
     public function update_subscriber()
     {
         $subscriberData = [
-            'type' => 'unsubscribed'
+            'type' => 'unsubscribed',
         ];
 
         $subscriber = $this->subscribersApi->update($this->testSubscriber->id, $subscriberData);
@@ -67,5 +66,4 @@ class SubscribersTest extends MlTestCase
 
         $this->assertTrue(count($subscribers) > 0);
     }
-
 }

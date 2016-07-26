@@ -4,20 +4,21 @@ namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
 
-class Subscribers extends ApiAbstract {
-
+class Subscribers extends ApiAbstract
+{
     protected $endpoint = 'subscribers';
 
     /**
-     * Get groups subscriber belongs to
+     * Get groups subscriber belongs to.
      *
-     * @param  int   $subscriberId
-     * @param  array $params
+     * @param int   $subscriberId
+     * @param array $params
+     *
      * @return [type]
      */
     public function getGroups($subscriberId, $params = [])
     {
-        $endpoint = $this->endpoint . '/' . $subscriberId . '/groups';
+        $endpoint = $this->endpoint.'/'.$subscriberId.'/groups';
 
         $params = array_merge($this->prepareParams(), $params);
 
@@ -27,19 +28,20 @@ class Subscribers extends ApiAbstract {
     }
 
     /**
-     * Get activity of subscriber
+     * Get activity of subscriber.
      *
-     * @param  int    $subscriberId
-     * @param  string $type
-     * @param  array  $params
+     * @param int    $subscriberId
+     * @param string $type
+     * @param array  $params
+     *
      * @return [type]
      */
     public function getActivity($subscriberId, $type = null, $params = [])
     {
-        $endpoint = $this->endpoint . '/' . $subscriberId . '/activity';
+        $endpoint = $this->endpoint.'/'.$subscriberId.'/activity';
 
         if ($type !== null) {
-            $endpoint .= '/' . $type;
+            $endpoint .= '/'.$type;
         }
 
         $params = array_merge($this->prepareParams(), $params);
@@ -50,14 +52,15 @@ class Subscribers extends ApiAbstract {
     }
 
     /**
-     * Seach for a subscriber by email or custom field value
+     * Seach for a subscriber by email or custom field value.
      *
-     * @param  string $query
+     * @param string $query
+     *
      * @return [type]
      */
     public function search($query)
     {
-        $endpoint = $this->endpoint . '/search';
+        $endpoint = $this->endpoint.'/search';
 
         $params = array_merge($this->prepareParams(), ['query' => $query]);
 
@@ -65,5 +68,4 @@ class Subscribers extends ApiAbstract {
 
         return $response['body'];
     }
-
 }

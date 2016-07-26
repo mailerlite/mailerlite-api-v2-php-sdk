@@ -1,9 +1,8 @@
 <?php
 
-namespace MailerLiteApi\Tests;
+namespace MailerLiteApi\tests;
 
 use MailerLiteApi\MailerLite;
-use MailerLiteApi\Api\Groups;
 
 class MlTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -16,8 +15,8 @@ class MlTestCase extends \PHPUnit_Framework_TestCase
     protected function addSubscriber($groupId, $email = null, $type = 'active')
     {
         $subscriberData = [
-            'email' => $email ? $email : uniqid() . '@mailerlite-test.dev',
-            'type' => $type
+            'email' => $email ? $email : uniqid().'@mailerlite-test.dev',
+            'type' => $type,
         ];
 
         return $this->groupsApi->addSubscriber($groupId, $subscriberData);
@@ -27,9 +26,9 @@ class MlTestCase extends \PHPUnit_Framework_TestCase
     {
         $subscribersData = [];
 
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $subscribersData[] = [
-                'email' => uniqid() . '@mailerlite-test.dev'
+                'email' => uniqid().'@mailerlite-test.dev',
             ];
         }
 
@@ -37,5 +36,4 @@ class MlTestCase extends \PHPUnit_Framework_TestCase
 
         return $addedSubscribers->imported;
     }
-
 }

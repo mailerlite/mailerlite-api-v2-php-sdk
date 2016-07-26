@@ -1,6 +1,6 @@
 <?php
 
-namespace MailerLiteApi\Tests;
+namespace MailerLiteApi\tests;
 
 use MailerLiteApi\MailerLite;
 
