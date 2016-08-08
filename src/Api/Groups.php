@@ -68,13 +68,20 @@ class Groups extends ApiAbstract {
      *
      * @param  int $groupId
      * @param  array $subscribers
+     * @param  array $options
      * @return [type]
      */
-    public function importSubscribers($groupId, $subscribers)
-    {
+    public function importSubscribers(
+        $groupId,
+        $subscribers,
+        $options = [
+            'resubscribe' => false,
+            'autoresponders' => false
+        ]
+    ) {
         $endpoint = $this->endpoint . '/' . $groupId . '/subscribers/import';
 
-        $response = $this->restClient->post($endpoint, ['subscribers' => $subscribers]);
+        $response = $this->restClient->post($endpoint, array_merge(['subscribers' => $subscribers], $options));
 
         return $response['body'];
     }
