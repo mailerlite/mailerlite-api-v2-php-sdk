@@ -32,7 +32,7 @@ class Campaigns extends ApiAbstract {
      * @param  array $settingsData
      * @return [type]
      */
-    public function send($campaignId, $settingsData)
+    public function send($campaignId, $settingsData = [])
     {
         $endpoint = $this->endpoint . '/' . $campaignId . '/actions/send';
 
