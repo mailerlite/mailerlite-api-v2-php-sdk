@@ -30,4 +30,29 @@ class CampaignsTest extends MlTestCase
         $this->campaignsApi->delete($campaign->id);
     }
 
+    /** @test **/
+    public function get_campaigns()
+    {
+        // see drafts
+        $drafts = $this->campaignsApi->get('draft');
+
+        $this->assertContainsValue($drafts, 'status', 'draft');
+        $this->assertDoesNotContainValue($drafts, 'status', 'sent');
+        $this->assertDoesNotContainValue($drafts, 'status', 'outbox');
+
+        // see outbox
+        $outbox = $this->campaignsApi->get('outbox');
+
+        $this->assertContainsValue($outbox, 'status', 'outbox');
+        $this->assertDoesNotContainValue($outbox, 'status', 'sent');
+        $this->assertDoesNotContainValue($outbox, 'status', 'draft');
+
+        // see sent
+        $sent = $this->campaignsApi->get();
+
+        $this->assertContainsValue($sent, 'status', 'sent');
+        $this->assertDoesNotContainValue($sent, 'status', 'outbox');
+        $this->assertDoesNotContainValue($sent, 'status', 'draft');
+    }
+
 }

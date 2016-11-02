@@ -55,4 +55,27 @@ class Campaigns extends ApiAbstract {
 
         return $response['body'];
     }
+
+    /**
+     * Get collection of items
+     * @param  array $fields
+     * @return [type]
+     */
+    public function get($type = 'sent', $fields = ['*'])
+    {
+        // filter anything that is not an available type
+        $type = in_array($type, ['sent', 'draft', 'outbox']) ? $type : 'sent';
+
+        $params = $this->prepareParams();
+
+        if ( ! empty($fields) && is_array($fields) && $fields != ['*']) {
+            $params['fields'] = $fields;
+        }
+
+        $response = $this->restClient->get($this->endpoint . '/' . $type, $params);
+
+        $entities = $this->generateCollection($response['body']);
+
+        return $entities;
+    }
 }

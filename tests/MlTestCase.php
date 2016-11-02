@@ -38,4 +38,28 @@ class MlTestCase extends \PHPUnit_Framework_TestCase
         return $addedSubscribers->imported;
     }
 
+    protected function assertContainsValue($list, $key, $value)
+    {
+        return $this->assertTrue($this->containsValue($list, $key, $value));
+    }
+
+    protected function assertDoesNotContainValue($list, $key, $value)
+    {
+        return $this->assertFalse($this->containsValue($list, $key, $value));
+    }
+
+    protected function containsValue($list, $key, $value)
+    {
+        $found = false;
+
+        foreach ($list as $item) {
+            if ($item->$key === $value) {
+                $found = true;
+                break;
+            }
+        }
+
+        return $found;
+    }
+
 }
