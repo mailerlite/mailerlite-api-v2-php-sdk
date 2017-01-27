@@ -49,11 +49,11 @@ class RestClientTest extends MlTestCase
 
         $response = $this->client->post('post', $formData);
 
-        $this->assertEquals(http_build_query($formData), $response['body']->data);
+        $this->assertEquals(json_encode($formData), $response['body']->data);
     }
 
     /** @test **/
-    public function put_mehtod()
+    public function put_method()
     {
         $formData = [
             'foo' => 'bar',
@@ -62,20 +62,15 @@ class RestClientTest extends MlTestCase
 
         $response = $this->client->put('put', $formData);
 
-        $this->assertEquals(http_build_query($formData), $response['body']->data);
+        $this->assertEquals(json_encode($formData), $response['body']->data);
     }
 
     /** @test **/
     public function delete_method()
     {
-        $formData = [
-            'foo' => 'bar',
-            'fiz' => 'biz'
-        ];
-
         $response = $this->client->delete('delete');
 
-        $this->assertEmpty($response['body']->data);
+        $this->assertEquals('null', $response['body']->data);
     }
 
     /** @test **/

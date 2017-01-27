@@ -53,7 +53,7 @@ class RestClient {
      */
     public function post($endpointUri, $data = [])
     {
-        return $this->send('POST', $endpointUri, http_build_query($data));
+        return $this->send('POST', $endpointUri, $data);
     }
 
     /**
@@ -65,7 +65,7 @@ class RestClient {
      */
     public function put($endpointUri, $putData = [])
     {
-        return $this->send('PUT', $endpointUri, http_build_query($putData));
+        return $this->send('PUT', $endpointUri, $putData);
     }
 
     /**
@@ -93,7 +93,7 @@ class RestClient {
         $headers = array_merge($headers, self::getDefaultHeaders());
         $endpointUrl = $this->baseUrl . $endpointUri;
 
-        $request = new Request($method, $endpointUrl, $headers, $body);
+        $request = new Request($method, $endpointUrl, $headers, json_encode($body));
         $response = $this->getHttpClient()->sendRequest($request);
 
         return $this->handleResponse($response);
@@ -139,7 +139,8 @@ class RestClient {
     protected function getDefaultHeaders() {
         return [
             'User-Agent'          => ApiConstants::SDK_USER_AGENT . '/' . ApiConstants::SDK_VERSION,
-            'X-MailerLite-ApiKey' => $this->apiKey
+            'X-MailerLite-ApiKey' => $this->apiKey,
+            'Content-Type'        => 'application/json'
         ];
     }
 }
