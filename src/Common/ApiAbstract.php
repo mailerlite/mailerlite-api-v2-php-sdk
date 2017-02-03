@@ -51,7 +51,7 @@ abstract class ApiAbstract {
     /**
      * Get single item
      *
-     * @param  int $id
+     * @param  int|string $id Id can be Subscribers ID or his email address
      * @return [type]
      */
     public function find($id)
