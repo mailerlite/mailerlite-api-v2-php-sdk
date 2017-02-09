@@ -10,13 +10,14 @@ class Stats extends ApiAbstract {
 
     public function get($fields = [])
     {
-        $params = $this->prepareParams();
+        $response = $this->restClient->get($this->endpoint, []);
 
-        if (!empty($fields) && is_array($fields) && $fields != ['*']) {
-            $params['fields'] = $fields;
-        }
+        return $response['body'];
+    }
 
-        $response = $this->restClient->get($this->endpoint, $params);
+    public function getHistorical($timestamp)
+    {
+        $response = $this->restClient->get($this->endpoint, ['timestamp' => $timestamp]);
 
         return $response['body'];
     }
