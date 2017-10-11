@@ -6,7 +6,6 @@ use ArrayAccess;
 use Exception;
 use GuzzleHttp\Psr7\Request;
 use MailerLiteApi\Common\Collection;
-use MailerLiteApi\Common\Resource;
 use MailerLiteApi\Common\RestClient;
 
 abstract class ApiAbstract {
