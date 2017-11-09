@@ -31,6 +31,23 @@ class Groups extends ApiAbstract {
     }
 
     /**
+     * Get single subscriber from group
+     *
+     * @param $groupId
+     * @param $subscriber_id
+     * @return mixed
+     */
+    public function getSubscriber($groupId, $subscriber_id)
+    {
+        $endpoint = $this->endpoint . '/' . $groupId . '/subscribers/' . $subscriber_id;
+
+        $response = $this->restClient->get($endpoint);
+
+        return $response['body'];
+    }
+
+
+    /**
      * Add single subscriber to group
      *
      * @param int   $groupId
