@@ -82,6 +82,14 @@ class MailerLite {
     }
 
     /**
+     * @return \MailerLiteApi\Api\Settings
+     */
+    public function settings()
+    {
+        return new \MailerLiteApi\Api\Settings($this->restClient);
+    }
+
+    /**
      * @param  string $version
      * @return string
      */
