@@ -24,7 +24,7 @@ composer require mailerlite/mailerlite-api-v2-php-sdk
 
 This way is preferable only if you are using shared hosting and do not have a possibility to use Composer. You will need to download [this archive](http://bit.ly/ml-php-sdk-0_1_10), extract it and place its contents in root folder of your project. The next step is the same as using Composer, you will need to require `vendor/autoload.php` file in your index.php and lets dive in!
 
-##Usage examples
+## Usage examples
 
 #### Groups API
 
@@ -64,7 +64,7 @@ $fieldsApi = $mailerliteClient->fields();
 $fields = $fieldsApi->get(); // returns array of fields
 ```
 
-##Use your preferred HTTP client
+## Use your preferred HTTP client
 
 MailerLite SDK uses cURL as default HTTP client but it is easy to use your preferred client. It is achieved by using [HTTPlug](http://httplug.io) which is PSR-7 compliant HTTP client abstraction.
 
@@ -77,7 +77,7 @@ $guzzleClient = new \Http\Adapter\Guzzle6\Client($guzzle);
 $mailerliteClient = new \MailerLiteApi\Mailerlite('your-api-key', $guzzleClient);
 ```
 
-## Support and Feeback
+## Support and Feedback
 
 In case you find any bugs, submit an issue directly here in GitHub.
 
