@@ -63,7 +63,7 @@ class SubscribersTest extends MlTestCase
     /** @test **/
     public function search_for_a_subscriber()
     {
-        $subscribers = $this->subscribersApi->search('mailerlite');
+        $subscribers = $this->subscribersApi->search('demo@mailerlite.com');
 
         $this->assertTrue(count($subscribers) > 0);
     }
