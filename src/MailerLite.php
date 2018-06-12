@@ -90,6 +90,14 @@ class MailerLite {
     }
 
     /**
+     * @return \MailerLiteApi\Api\Segments
+     */
+    public function segments()
+    {
+        return new \MailerLiteApi\Api\Segments($this->restClient);
+    }
+
+    /**
      * @param  string $version
      * @return string
      */
