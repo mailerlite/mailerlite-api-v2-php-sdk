@@ -21,7 +21,7 @@ class WooCommerce extends ApiAbstract
         $params = array_merge($this->prepareParams(), ['consumer_key' => $consumerKey, 'consumer_secret' => $consumerSecret, 'store' => $store, 'api_key' => $apiKey] );
 
         $response = $this->restClient->post( $endpoint, $params );
-        dd($response['body']);
+
         return $response['body'];
     }
 }
