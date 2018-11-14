@@ -89,6 +89,11 @@ class MailerLite {
         return new \MailerLiteApi\Api\Settings($this->restClient);
     }
 
+    public function woocommerce()
+    {
+        return new \MailerLiteApi\Api\WooCommerce($this->restClient);
+    }
+
     /**
      * @return \MailerLiteApi\Api\Segments
      */
