@@ -17,7 +17,7 @@ class Subscribers extends ApiAbstract {
      */
     public function getGroups($subscriberId, $params = [])
     {
-        $endpoint = $this->endpoint . '/' . $subscriberId . '/groups';
+        $endpoint = $this->endpoint . '/' . urlencode($subscriberId) . '/groups';
 
         $params = array_merge($this->prepareParams(), $params);
 
@@ -36,7 +36,7 @@ class Subscribers extends ApiAbstract {
      */
     public function getActivity($subscriberId, $type = null, $params = [])
     {
-        $endpoint = $this->endpoint . '/' . $subscriberId . '/activity';
+        $endpoint = $this->endpoint . '/' . urlencode($subscriberId) . '/activity';
 
         if ($type !== null) {
             $endpoint .= '/' . $type;
