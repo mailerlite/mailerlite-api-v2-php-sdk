@@ -20,7 +20,10 @@ class WooCommerce extends ApiAbstract
         if (isset($response['body']->errors)) {
             return $response['body'];
         }
-        $this->setWebhooks($store);
+        $webHookResponse = $this->setWebhooks($store);
+        if(isset($webHookResponse['body']) && isset($webHookResponse['body']->errors)) {
+            return $webHookResponse['body'];
+        }
         
         return $response['body'];
     }
@@ -31,6 +34,6 @@ class WooCommerce extends ApiAbstract
 
         $params = array_merge($this->prepareParams(), ['shop' => $shop] );
 
-        $this->restClient->post( $endpoint, $params );
+        return $this->restClient->post( $endpoint, $params );
     }
 }
