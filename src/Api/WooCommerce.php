@@ -36,4 +36,13 @@ class WooCommerce extends ApiAbstract
 
         return $this->restClient->post( $endpoint, $params );
     }
+
+    public function saveOrder($orderData, $shop)
+    {
+        $endpoint = 'woocommerce/alternative_save_order';
+
+        $params = array_merge($this->prepareParams(), ['order_data' => $orderData, 'shop' => $shop] );
+
+        return $this->restClient->post( $endpoint, $params );
+    }
 }
