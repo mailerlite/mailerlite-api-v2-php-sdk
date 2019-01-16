@@ -45,4 +45,13 @@ class WooCommerce extends ApiAbstract
 
         return $this->restClient->post( $endpoint, $params );
     }
+
+    public function disconnectShop($shop)
+    {
+        $shopName = parse_url($shop, PHP_URL_HOST);
+        $endpoint = 'woocommerce/disconnect_shop/'.$shopName;
+
+        $params = [] ;
+        return $this->restClient->delete( $endpoint, $params );
+    }
 }
