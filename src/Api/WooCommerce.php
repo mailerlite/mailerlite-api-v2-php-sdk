@@ -46,14 +46,15 @@ class WooCommerce extends ApiAbstract
         return $this->restClient->post( $endpoint, $params );
     }
     /**
-     * Calls api endpoint that will delete the shop from our db
+     * Calls api endpoint that will toggle shop's active state
+     * in our db
      */
-    public function disconnectShop($shop)
+    public function toggleShopConnection($shop, $activeState)
     {
         $shopName = parse_url($shop, PHP_URL_HOST);
-        $endpoint = 'woocommerce/disconnect_shop/'.$shopName;
+        $endpoint = 'woocommerce/toggle_shop_connection';
 
-        $params = [] ;
-        return $this->restClient->delete( $endpoint, $params );
+        $params = array_merge($this->prepareParams(), ['active_state' => $activeState, 'shop' => $shopName] );
+        return $this->restClient->post( $endpoint, $params );
     }
 }
