@@ -8,9 +8,7 @@ use MailerLiteApi\Common\ApiAbstract;
 class WooCommerce extends ApiAbstract
 {
     protected $endpoint = 'woocommerce';
-    /**
-     * Sends shop data to our api to be saved(or updated) in the db 
-     */
+
     public function setConsumerData( $consumerKey, $consumerSecret, $store, $apiKey, $currency )
     {
 
@@ -19,13 +17,10 @@ class WooCommerce extends ApiAbstract
         $params = array_merge($this->prepareParams(), ['consumer_key' => $consumerKey, 'consumer_secret' => $consumerSecret, 'store' => $store, 'api_key' => $apiKey, 'currency' => $currency] );
 
         $response = $this->restClient->post( $endpoint, $params );
-        
+
         return $response['body'];
     }
-    /**
-     * Currenty not in use as this is meant to save webhooks for created and updated orders
-     * however, now we're instead listening for the event in the plugin so no need for webhooks
-     */
+
     public function setWebhooks($shop)
     {
         $endpoint = $this->endpoint.'/webhooks';
@@ -34,21 +29,15 @@ class WooCommerce extends ApiAbstract
 
         return $this->restClient->post( $endpoint, $params );
     }
-    /**
-     * Sends the completed order data to the api
-     */
+
     public function saveOrder($orderData, $shop)
     {
         $endpoint = 'woocommerce/alternative_save_order';
 
         $params = array_merge($this->prepareParams(), ['order_data' => $orderData, 'shop' => $shop] );
-
         return $this->restClient->post( $endpoint, $params );
     }
-    /**
-     * Calls api endpoint that will toggle shop's active state
-     * in our db
-     */
+
     public function toggleShopConnection($shop, $activeState)
     {
         $shopName = parse_url($shop, PHP_URL_HOST);
@@ -56,5 +45,34 @@ class WooCommerce extends ApiAbstract
 
         $params = array_merge($this->prepareParams(), ['active_state' => $activeState, 'shop' => $shopName] );
         return $this->restClient->post( $endpoint, $params );
+    }
+
+    public function sendCartData($shopUrl, $cartData) {
+        $endpoint = 'woocommerce/save_cart';
+
+        $params = array_merge($this->prepareParams(), ['cart_data' => $cartData, 'shop' => $shopUrl] );
+        return $this->restClient->post( $endpoint, $params );
+    } 
+
+    public function sendSubscriberData($data) {
+        $endpoint = 'woocommerce/save_subscriber';
+
+        $params = array_merge($this->prepareParams(), ['data'=>$data] );
+        $response = $this->restClient->post( $endpoint, $params );
+        
+        if (isset($response['body'])){
+            return $response['body'];
+        } else {
+            return false;
+        }
+    }
+
+    public function sendOrderProcessingData($data) {
+        $endpoint = 'woocommerce/order_processing';
+
+        $params = array_merge($this->prepareParams(), ['data'=>$data] );
+        $this->restClient->post( $endpoint, $params );
+
+        return true;
     }
 }
