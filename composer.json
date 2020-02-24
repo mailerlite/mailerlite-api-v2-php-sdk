@@ -16,12 +16,12 @@
     "require": {
         "php" : "^5.5|^7.0",
         "guzzlehttp/psr7": "~1.2",
-        "php-http/httplug": "^1.0",
-        "php-http/curl-client": "^1.4",
+        "php-http/httplug": "^2.0",
+        "php-http/curl-client": "^2.1",
         "php-http/message": "^1.2"
     },
     "require-dev": {
-        "php-http/guzzle6-adapter": "^1.0",
+        "php-http/guzzle6-adapter": "^2.0",
         "phpunit/phpunit": "5.3.*",
         "mockery/mockery": "^0.9.4"
     },
