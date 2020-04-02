@@ -5,6 +5,14 @@
     "license": "MIT",
     "keywords": ["mailerlite", "sdk", "email", "marketing"],
     "type": "library",
+    "authors": [
+        {
+            "name": "Justinas Pošiūnas",
+            "email": "justinas.posiunas@mailerlite.com",
+            "homepage": "https://mailerlite.com",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php" : "^5.5|^7.0",
         "guzzlehttp/psr7": "~1.2",
