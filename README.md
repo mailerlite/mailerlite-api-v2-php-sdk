@@ -22,7 +22,7 @@ composer require mailerlite/mailerlite-api-v2-php-sdk
 
 ##### Manual (preferable for shared hostings)
 
-This way is preferable only if you are using shared hosting and do not have a possibility to use Composer. You will need to download [this archive](https://github.com/mailerlite/mailerlite-api-v2-php-sdk/archive/0.2.3.zip), extract it and place its contents in root folder of your project. The next step is the same as using Composer, you will need to require `vendor/autoload.php` file in your index.php and lets dive in!
+This way is preferable only if you are using shared hosting and do not have a possibility to use Composer. You will need to download [this archive](https://bit.ly/ml-php-sdk-0_1_10), extract it and place its contents in root folder of your project. The next step is the same as using Composer, you will need to require `vendor/autoload.php` file in your index.php and lets dive in!
 
 ## Usage examples
 
