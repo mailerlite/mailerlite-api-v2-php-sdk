@@ -2,7 +2,7 @@
 
 It is an official PHP SDK for MailerLite API v2.
 
-You can find more examples and information about MailerLite API v2 here: [http://developers.mailerlite.com](http://developers.mailerlite.com)
+You can find more examples and information about MailerLite API v2 here: [http://developers.mailerlite.com](https://developers.mailerlite.com)
 
 ## Getting started
 
@@ -22,7 +22,7 @@ composer require mailerlite/mailerlite-api-v2-php-sdk
 
 ##### Manual (preferable for shared hostings)
 
-This way is preferable only if you are using shared hosting and do not have a possibility to use Composer. You will need to download [this archive](http://bit.ly/ml-php-sdk-0_1_10), extract it and place its contents in root folder of your project. The next step is the same as using Composer, you will need to require `vendor/autoload.php` file in your index.php and lets dive in!
+This way is preferable only if you are using shared hosting and do not have a possibility to use Composer. You will need to download [this archive](https://bit.ly/32jmi7M)(v0.2.3), extract it and place its contents in root folder of your project. The next step is the same as using Composer, you will need to require `vendor/autoload.php` file in your index.php and lets dive in!
 
 ## Usage examples
 
@@ -66,9 +66,9 @@ $fields = $fieldsApi->get(); // returns array of fields
 
 ## Use your preferred HTTP client
 
-MailerLite SDK uses cURL as default HTTP client but it is easy to use your preferred client. It is achieved by using [HTTPlug](http://httplug.io) which is PSR-7 compliant HTTP client abstraction.
+MailerLite SDK uses cURL as default HTTP client but it is easy to use your preferred client. It is achieved by using [HTTPlug](https://httplug.io) which is PSR-7 compliant HTTP client abstraction.
 
-Here is an example how to use [Guzzle](http://docs.guzzlephp.org/) instead of cURL:
+Here is an example how to use [Guzzle](https://docs.guzzlephp.org/) instead of cURL:
 
 ```php
 $guzzle = new \GuzzleHttp\Client();
@@ -85,4 +85,4 @@ You are welcome to create SDK for any other programming language.
 
 If you have any troubles using our API or SDK free to contact our support by email [info@mailerlite.com](mailto:info@mailerlite)
 
-Official documentation is at [http://developers.mailerlite.com](http://developers.mailerlite.com)
+Official documentation is at [https://developers.mailerlite.com](https://developers.mailerlite.com)
