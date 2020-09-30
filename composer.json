@@ -5,7 +5,7 @@
     "license": "MIT",
     "keywords": ["mailerlite", "sdk", "email", "marketing"],
     "type": "library",
-        "require": {
+    "require": {
         "php" : "^7.1",
         "php-http/client-common": "^2.0",
         "php-http/discovery": "^1.7",
