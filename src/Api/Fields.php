@@ -4,6 +4,11 @@ namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
 
+/**
+ * Class Fields
+ *
+ * @package MailerLiteApi\Api
+ */
 class Fields extends ApiAbstract {
 
     protected $endpoint = 'fields';

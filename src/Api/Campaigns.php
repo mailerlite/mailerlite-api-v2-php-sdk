@@ -4,6 +4,11 @@ namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
 
+/**
+ * Class Campaigns
+ *
+ * @package MailerLiteApi\Api
+ */
 class Campaigns extends ApiAbstract {
 
     protected $endpoint = 'campaigns';

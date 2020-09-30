@@ -4,6 +4,11 @@ namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
 
+/**
+ * Class Settings
+ *
+ * @package MailerLiteApi\Api
+ */
 class Settings extends ApiAbstract {
 
     protected $endpoint = 'settings';
