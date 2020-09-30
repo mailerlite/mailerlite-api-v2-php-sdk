@@ -103,6 +103,14 @@ class MailerLite {
     }
 
     /**
+     * @return \MailerLiteApi\Api\Batch
+     */
+    public function batch()
+    {
+        return new \MailerLiteApi\Api\Batch($this->restClient);
+    }
+
+    /**
      * @param  string $version
      * @return string
      */
