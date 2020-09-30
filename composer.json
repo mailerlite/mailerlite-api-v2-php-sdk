@@ -5,25 +5,16 @@
     "license": "MIT",
     "keywords": ["mailerlite", "sdk", "email", "marketing"],
     "type": "library",
-    "authors": [
-        {
-            "name": "Justinas Pošiūnas",
-            "email": "justinas.posiunas@mailerlite.com",
-            "homepage": "https://mailerlite.com",
-            "role": "Developer"
-        }
-    ],
     "require": {
-        "php" : "^5.5|^7.0",
-        "guzzlehttp/psr7": "~1.2",
-        "php-http/httplug": "^1.0",
-        "php-http/curl-client": "^1.4",
-        "php-http/message": "^1.2"
+        "php" : "^7.1",
+        "php-http/client-common": "^2.0",
+        "php-http/discovery": "^1.7",
+        "nyholm/psr7": "^1.0",
+        "ext-json": "*"
     },
     "require-dev": {
-        "php-http/guzzle6-adapter": "^1.0",
-        "phpunit/phpunit": "5.3.*",
-        "mockery/mockery": "^0.9.4"
+        "php-http/guzzle6-adapter": "^2.0",
+        "phpunit/phpunit": "6.* | 7.* | 8.* | 9.*"
     },
     "autoload": {
         "psr-4": {

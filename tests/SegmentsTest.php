@@ -3,15 +3,19 @@
 namespace MailerLiteApi\Tests;
 
 use MailerLiteApi\MailerLite;
-use MailerLiteApi\Api\Segments;
 
+/**
+ * Class SegmentsTest
+ *
+ * @package MailerLiteApi\Tests
+ */
 class SegmentsTest extends MlTestCase
 {
     protected $segmentsApi;
 
     protected $testSegment;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->segmentsApi = (new MailerLite(API_KEY))->segments();
     }

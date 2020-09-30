@@ -3,14 +3,12 @@
 namespace MailerLiteApi\Common;
 
 use Http\Client\HttpClient;
-use Http\Client\Curl\Client as CurlClient;
-
-use GuzzleHttp\Psr7\Request;
-use MailerLiteApi\Common\ApiConstants;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
-
-use Http\Message\MessageFactory\GuzzleMessageFactory;
-use Http\Message\StreamFactory\GuzzleStreamFactory;
+use Psr\Http\Message\StreamFactoryInterface;
 
 class RestClient {
 
@@ -20,10 +18,14 @@ class RestClient {
 
     public $baseUrl;
 
+    public $requestFactory;
+
+    public $streamFactory;
+
     /**
-     * @param string $baseUrl
-     * @param string $apiKey
-     * @param HttpClient $httpClient
+     * @param  string  $baseUrl
+     * @param  string  $apiKey
+     * @param  \Http\Client\HttpClient|null  $httpClient
      */
     public function __construct($baseUrl, $apiKey, HttpClient $httpClient = null)
     {
@@ -90,11 +92,25 @@ class RestClient {
      */
     protected function send($method, $endpointUri, $body = null, array $headers = [])
     {
+
         $headers = array_merge($headers, self::getDefaultHeaders());
         $endpointUrl = $this->baseUrl . $endpointUri;
 
-        $request = new Request($method, $endpointUrl, $headers, json_encode($body));
-        $response = $this->getHttpClient()->sendRequest($request);
+        $request = $this->getRequestFactory()->createRequest($method, $endpointUrl);
+
+        if ($body) {
+            $stream  = $this->getStreamFactory()
+                            ->createStream(json_encode($body));
+            $request = $request->withBody($stream);
+        }
+
+        foreach ($headers as $name => $value) {
+            $request = $request->withAddedHeader($name, $value);
+        }
+
+        $response = $this->getHttpClient()->sendRequest(
+            $request
+        );
 
         return $this->handleResponse($response);
     }
@@ -117,30 +133,52 @@ class RestClient {
     }
 
     /**
-     * @return HttpClient
+     * @return ClientInterface
      */
     protected function getHttpClient()
     {
         if (is_null($this->httpClient)) {
-            $options = [
-                CURLOPT_CONNECTTIMEOUT => 10,
-                CURLOPT_SSL_VERIFYPEER => false
-            ];
-
-            $this->httpClient = new CurlClient(new GuzzleMessageFactory(), new GuzzleStreamFactory(), $options);
+            $this->httpClient = Psr18ClientDiscovery::find();
         }
 
         return $this->httpClient;
     }
 
     /**
+     * @return HttpClient
+     */
+    protected function getRequestFactory(): RequestFactoryInterface
+    {
+        if (null === $this->requestFactory) {
+            $this->requestFactory = Psr17FactoryDiscovery::findRequestFactory();
+        }
+
+        return $this->requestFactory;
+    }
+
+    private function getStreamFactory(): StreamFactoryInterface
+    {
+        if (null === $this->streamFactory) {
+            $this->streamFactory = Psr17FactoryDiscovery::findStreamFactory();
+        }
+
+        return $this->streamFactory;
+    }
+
+    /**
      * @return array
      */
     protected function getDefaultHeaders() {
-        return [
-            'User-Agent'          => ApiConstants::SDK_USER_AGENT . '/' . ApiConstants::SDK_VERSION,
-            'X-MailerLite-ApiKey' => $this->apiKey,
-            'Content-Type'        => 'application/json'
+        $headers = [
+            'User-Agent'          => ApiConstants::SDK_USER_AGENT.'/'.ApiConstants::SDK_VERSION,
+            'Content-Type'        => 'application/json',
         ];
+
+        // Only adding it when provided. Not required for RestClientTest
+        if ($this->apiKey) {
+            $headers['X-MailerLite-ApiKey'] = $this->apiKey;
+        }
+
+        return $headers;
     }
 }

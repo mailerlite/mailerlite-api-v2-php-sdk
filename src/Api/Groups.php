@@ -4,6 +4,11 @@ namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
 
+/**
+ * Class Groups
+ *
+ * @package MailerLiteApi\Api
+ */
 class Groups extends ApiAbstract {
 
     protected $endpoint = 'groups';

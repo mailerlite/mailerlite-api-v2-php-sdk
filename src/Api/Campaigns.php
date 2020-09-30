@@ -3,7 +3,13 @@
 namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
+use MailerLiteApi\Exceptions\MailerLiteSdkException;
 
+/**
+ * Class Campaigns
+ *
+ * @package MailerLiteApi\Api
+ */
 class Campaigns extends ApiAbstract {
 
     protected $endpoint = 'campaigns';
@@ -13,11 +19,17 @@ class Campaigns extends ApiAbstract {
      *
      * @param int   $campaignId
      * @param array $contentData
-     * @param array $params
      * @return [type]
      */
-    public function addContent($campaignId, $contentData = [], $params = [])
+    public function addContent(int $campaignId, array $contentData)
     {
+        if ( ! array_key_exists('html', $contentData)) {
+            throw new MailerLiteSdkException("HTML must be provided");
+        }
+        if ( ! array_key_exists('plain', $contentData)) {
+            throw new MailerLiteSdkException("Plain text must be provided");
+        }
+
         $endpoint = $this->endpoint . '/' . $campaignId . '/content';
 
         $response = $this->restClient->put($endpoint, $contentData);
@@ -59,7 +71,7 @@ class Campaigns extends ApiAbstract {
     /**
      * Get collection of items
      * @param  array $fields
-     * @return [type]
+     * @return \MailerLiteApi\Common\Collection
      */
     public function get($type = 'sent', $fields = ['*'])
     {

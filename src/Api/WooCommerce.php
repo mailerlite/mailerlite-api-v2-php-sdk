@@ -1,10 +1,14 @@
 <?php
 
-
 namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
 
+/**
+ * Class WooCommerce
+ *
+ * @package MailerLiteApi\Api
+ */
 class WooCommerce extends ApiAbstract
 {
     protected $endpoint = 'woocommerce';

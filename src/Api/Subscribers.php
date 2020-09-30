@@ -4,7 +4,18 @@ namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
 
+/**
+ * Class Subscribers
+ *
+ * @package MailerLiteApi\Api
+ */
 class Subscribers extends ApiAbstract {
+
+    const TYPE_ACTIVE = 'active';
+    const TYPE_UNSUBSCRIBED = 'unsubscribed';
+    const TYPE_BOUNCED = 'bounced';
+    const TYPE_JUNK = 'junk';
+    const TYPE_UNCONFIRMED = 'unconfirmed';
 
     protected $endpoint = 'subscribers';
 
@@ -64,6 +75,31 @@ class Subscribers extends ApiAbstract {
         $response = $this->restClient->get($endpoint, $params);
 
         return $response['body'];
+    }
+
+    /**
+     * Get all subscribers
+     *
+     * @param  string[]  $fields
+     * @param  null|string  $type
+     *
+     * @return \MailerLiteApi\Common\Collection
+     */
+    public function get($fields = ['*'], $type = null)
+    {
+        $params = $this->prepareParams();
+
+        if ( ! empty($fields) && is_array($fields) && $fields != ['*']) {
+            $params['fields'] = $fields;
+        }
+
+        if ($type !== null) {
+            $params['type'] = $type;
+        }
+
+        $response = $this->restClient->get($this->endpoint, $params);
+
+        return $this->generateCollection($response['body']);
     }
 
 }

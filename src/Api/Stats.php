@@ -4,6 +4,11 @@ namespace MailerLiteApi\Api;
 
 use MailerLiteApi\Common\ApiAbstract;
 
+/**
+ * Class Stats
+ *
+ * @package MailerLiteApi\Api
+ */
 class Stats extends ApiAbstract {
 
     protected $endpoint = 'stats';

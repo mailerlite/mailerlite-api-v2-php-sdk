@@ -3,8 +3,12 @@
 namespace MailerLiteApi\Tests;
 
 use MailerLiteApi\MailerLite;
-use MailerLiteApi\Api\Groups;
 
+/**
+ * Class GroupsTest
+ *
+ * @package MailerLiteApi\Tests
+ */
 class GroupsTest extends MlTestCase
 {
     protected $groupsApi;
@@ -15,7 +19,7 @@ class GroupsTest extends MlTestCase
 
     protected $testSubscribers;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->groupsApi = (new MailerLite(API_KEY))->groups();
         $this->testGroup = $this->createGroup();
@@ -24,7 +28,7 @@ class GroupsTest extends MlTestCase
         $this->addSubscriber($this->testGroup->id, uniqid() . '@mailerlite-test.dev', 'unsubscribed');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->groupsApi->delete($this->testGroup->id);
         $this->groupsApi->delete($this->testGroupEmpty->id);
@@ -85,7 +89,7 @@ class GroupsTest extends MlTestCase
     {
         $groupsCount = $this->groupsApi->count();
 
-        $this->assertTrue(array_key_exists('count', $groupsCount) && is_numeric($groupsCount->count));
+        $this->assertTrue(isset($groupsCount->count) && is_numeric($groupsCount->count));
     }
 
     /** @test **/
