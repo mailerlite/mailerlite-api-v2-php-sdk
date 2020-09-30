@@ -2,11 +2,13 @@
 
 namespace MailerLiteApi\Tests;
 
-use MailerLiteApi\MailerLite;
 use MailerLiteApi\Api\Groups;
 
-class MlTestCase extends \PHPUnit_Framework_TestCase
+class MlTestCase extends \PHPUnit\Framework\TestCase
 {
+    /** @var Groups */
+    protected $groupsApi;
+
     // helper functions
     protected function createGroup($name = 'New Group')
     {
@@ -40,12 +42,12 @@ class MlTestCase extends \PHPUnit_Framework_TestCase
 
     protected function assertContainsValue($list, $key, $value)
     {
-        return $this->assertTrue($this->containsValue($list, $key, $value));
+        $this->assertTrue($this->containsValue($list, $key, $value));
     }
 
     protected function assertDoesNotContainValue($list, $key, $value)
     {
-        return $this->assertFalse($this->containsValue($list, $key, $value));
+        $this->assertFalse($this->containsValue($list, $key, $value));
     }
 
     protected function containsValue($list, $key, $value)

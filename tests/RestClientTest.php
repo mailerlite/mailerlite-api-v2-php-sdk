@@ -70,22 +70,22 @@ class RestClientTest extends MlTestCase
     {
         $response = $this->client->delete('delete');
 
-        $this->assertEquals('null', $response['body']->data);
+        $this->assertEquals('', $response['body']->data);
     }
 
     /** @test **/
     public function error_internal_server()
     {
-        $this->setExpectedException('Exception');
+        $this->expectException('Exception');
 
-        $response = $this->client->get('status/500');
+        $this->client->get('status/500');
     }
 
     /** @test **/
     public function error_400()
     {
-        $this->setExpectedException('Exception');
+        $this->expectException('Exception');
 
-        $response = $this->client->get('status/400');
+        $this->client->get('status/400');
     }
 }

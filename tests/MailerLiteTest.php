@@ -9,7 +9,7 @@ class MailerLiteTest extends MlTestCase
     /** @test **/
     public function invalid_api_key()
     {
-        $this->setExpectedException('\\MailerLiteApi\\Exceptions\\MailerLiteSdkException');
+        $this->expectException('\\MailerLiteApi\\Exceptions\\MailerLiteSdkException');
 
         $ml = new MailerLite();
     }

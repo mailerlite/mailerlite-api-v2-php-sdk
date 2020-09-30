@@ -85,7 +85,7 @@ class GroupsTest extends MlTestCase
     {
         $groupsCount = $this->groupsApi->count();
 
-        $this->assertTrue(array_key_exists('count', $groupsCount) && is_numeric($groupsCount->count));
+        $this->assertTrue(isset($groupsCount->count) && is_numeric($groupsCount->count));
     }
 
     /** @test **/
