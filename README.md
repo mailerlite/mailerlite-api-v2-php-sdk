@@ -21,7 +21,7 @@ composer require mailerlite/mailerlite-api-v2-php-sdk
 ```
 
 This library is built atop of [PSR-7](https://www.php-fig.org/psr/psr-7/) and
-[PSR-18](https://www.php-fig.org/psr/psr-18/). If you are receiving `Http\Discovery\Exception\DiscoveryFailedException` exception you will need to run:
+[PSR-18](https://www.php-fig.org/psr/psr-18/). If you are receiving `Http\Discovery\Exception\DiscoveryFailedException` exception, you will need to run:
 
 ```bash
 composer require php-http/guzzle6-adapter
