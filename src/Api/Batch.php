@@ -19,7 +19,7 @@ class Batch extends ApiAbstract
     /**
      * @param  BatchRequest[]  $requests
      *
-     * @return mixed
+     * @return \MailerLiteApi\Common\Collection
      */
     public function send(array $requests)
     {
