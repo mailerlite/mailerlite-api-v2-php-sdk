@@ -3,8 +3,14 @@
 namespace MailerLiteApi\Tests;
 
 use MailerLiteApi\Api\Groups;
+use PHPUnit\Framework\TestCase;
 
-class MlTestCase extends \PHPUnit\Framework\TestCase
+/**
+ * Class MlTestCase
+ *
+ * @package MailerLiteApi\Tests
+ */
+class MlTestCase extends TestCase
 {
     /** @var Groups */
     protected $groupsApi;

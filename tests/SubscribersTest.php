@@ -3,8 +3,12 @@
 namespace MailerLiteApi\Tests;
 
 use MailerLiteApi\MailerLite;
-use MailerLiteApi\Resources\Fields;
 
+/**
+ * Class SubscribersTest
+ *
+ * @package MailerLiteApi\Tests
+ */
 class SubscribersTest extends MlTestCase
 {
     protected $groupsApi;
@@ -15,7 +19,7 @@ class SubscribersTest extends MlTestCase
 
     protected $testSubscriber;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $ml = new MailerLite(API_KEY);
         $this->groupsApi = $ml->groups();
@@ -25,7 +29,7 @@ class SubscribersTest extends MlTestCase
         $this->testSubscriber = $this->addSubscriber($this->testGroup->id);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->groupsApi->delete($this->testGroup->id);
     }
@@ -55,9 +59,9 @@ class SubscribersTest extends MlTestCase
 
         $subscriber = $this->subscribersApi->update($this->testSubscriber->id, $subscriberData);
 
-        $this->assertEquals($subscriber->type, 'unsubscribed');
+        $this->assertEquals('unsubscribed', $subscriber->type);
 
-        $subscriber = $this->subscribersApi->update($this->testSubscriber->id, ['type' => 'active']);
+        $this->subscribersApi->update($this->testSubscriber->id, ['type' => 'active']);
     }
 
     /** @test **/

@@ -4,6 +4,11 @@ namespace MailerLiteApi\Tests;
 
 use MailerLiteApi\MailerLite;
 
+/**
+ * Class MailerLiteTest
+ *
+ * @package MailerLiteApi\Tests
+ */
 class MailerLiteTest extends MlTestCase
 {
     /** @test **/

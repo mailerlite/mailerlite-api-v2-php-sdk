@@ -3,13 +3,19 @@
 namespace MailerLiteApi\Tests;
 
 use MailerLiteApi\MailerLite;
-use MailerLiteApi\Api\Stats;
 
+/**
+ * Class StatsTest
+ *
+ * @package MailerLiteApi\Tests
+ */
 class StatsTest extends MlTestCase
 {
     protected $campaignsApi;
 
-    protected function setUp()
+    protected $statsApi;
+
+    protected function setUp(): void
     {
         $this->statsApi = (new MailerLite(API_KEY))->stats();
     }
