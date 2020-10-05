@@ -2,7 +2,7 @@
 
 It is an official PHP SDK for MailerLite API v2.
 
-You can find more examples and information about MailerLite API v2 here: [http://developers.mailerlite.com](https://developers.mailerlite.com)
+You can find more examples and information about MailerLite API v2 here: [https://developers.mailerlite.com](https://developers.mailerlite.com)
 
 ## Getting started
 
