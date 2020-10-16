@@ -8,6 +8,11 @@ use MailerLiteApi\Common\ApiConstants;
 use MailerLiteApi\Common\RestClient;
 use MailerLiteApi\Exceptions\MailerLiteSdkException;
 
+/**
+ * Class MailerLite
+ *
+ * @package MailerLiteApi
+ */
 class MailerLite {
 
     /**
