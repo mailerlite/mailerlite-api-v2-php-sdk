@@ -6,7 +6,7 @@
     "keywords": ["mailerlite", "sdk", "email", "marketing"],
     "type": "library",
     "require": {
-        "php" : "^7.1",
+        "php" : "^8.0",
         "php-http/client-common": "^2.0",
         "php-http/discovery": "^1.7",
         "nyholm/psr7": "^1.0",

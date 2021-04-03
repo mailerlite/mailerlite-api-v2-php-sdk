@@ -24,7 +24,7 @@ class CampaignsTest extends MlTestCase
         $campaignData = [
             'subject' => 'Regular Campaign Subject',
             'type' => 'regular',
-            'groups' => [2984475, 3237221] // TODO: improve this with creating new groups
+            'groups' => [CAMPAIGNS_TEST_GROUP1, CAMPAIGNS_TEST_GROUP2] // TODO: improve this with creating new groups
         ];
 
         $campaign = $this->campaignsApi->create($campaignData);
