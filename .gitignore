@@ -5,3 +5,4 @@ nbproject/*
 composer.lock
 build
 _notes
+.phpunit.result.cache
