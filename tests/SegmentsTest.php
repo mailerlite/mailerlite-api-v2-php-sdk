@@ -25,6 +25,6 @@ class SegmentsTest extends MlTestCase
     {
         $segments = $this->segmentsApi->get();
 
-        $this->assertContains('Demo segment', (array) $segments->first()->data[0]);
+        $this->assertContains(SEGMENTS_TEST_NAME1, (array) $segments->first()->data[0]);
     }
 }
