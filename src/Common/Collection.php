@@ -7,8 +7,8 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 
-class Collection implements ArrayAccess, IteratorAggregate, Countable {
-
+class Collection implements ArrayAccess, IteratorAggregate, Countable
+{
     /**
      * The items contained in the collection.
      *
@@ -19,7 +19,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Create a new collection.
      *
-     * @param  array $items
+     * @param array $items
      */
     public function __construct(array $items = [])
     {
@@ -29,9 +29,8 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Get an iterator for the items.
      *
-     * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator() : ArrayIterator
     {
         return new ArrayIterator($this->items);
     }
@@ -39,7 +38,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Create a new collection instance if the value isn't one already.
      *
-     * @param  mixed $items
+     * @param mixed $items
      *
      * @return static
      */
@@ -84,9 +83,8 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Count the number of items in the collection.
      *
-     * @return int
      */
-    public function count()
+    public function count() : int
     {
         return count($this->items);
     }
@@ -94,11 +92,10 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Determine if an item exists at an offset.
      *
-     * @param  mixed $key
+     * @param mixed $key
      *
-     * @return bool
      */
-    public function offsetExists($key)
+    public function offsetExists($key) : bool
     {
         return array_key_exists($key, $this->items);
     }
@@ -106,10 +103,11 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Get an item at a given offset.
      *
-     * @param  mixed $key
+     * @param mixed $key
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($key)
     {
         return $this->items[$key];
@@ -118,12 +116,11 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Set the item at a given offset.
      *
-     * @param  mixed $key
-     * @param  mixed $value
+     * @param mixed $key
+     * @param mixed $value
      *
-     * @return void
      */
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value) : void
     {
         if (is_null($key)) {
             $this->items[] = $value;
@@ -135,11 +132,10 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable {
     /**
      * Unset the item at a given offset.
      *
-     * @param  string $key
+     * @param string $key
      *
-     * @return void
      */
-    public function offsetUnset($key)
+    public function offsetUnset($key) : void
     {
         unset($this->items[$key]);
     }
