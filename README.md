@@ -14,17 +14,13 @@ There are two ways to use MailerLite PHP SDK:
 
 If you are not familiar with Composer, learn about it [here](https://getcomposer.org/doc/01-basic-usage.md).
 
-Then you will need to run this simple command using CLI:
-
-```
-composer require mailerlite/mailerlite-api-v2-php-sdk
-```
-
 This library is built atop of [PSR-7](https://www.php-fig.org/psr/psr-7/) and
-[PSR-18](https://www.php-fig.org/psr/psr-18/). If you are receiving `Http\Discovery\Exception\DiscoveryFailedException` exception, you will need to run:
+[PSR-18](https://www.php-fig.org/psr/psr-18/).
 
-```bash
-composer require php-http/guzzle6-adapter
+To install the library, you also need to choose an HTTP client implementation. To install the mailerlite with guzzle, run this command line:
+
+```
+composer require mailerlite/mailerlite-api-v2-php-sdk guzzlehttp/guzzle
 ```
 
 ##### Manual (preferable for shared hostings)

@@ -7,13 +7,14 @@
     "type": "library",
     "require": {
         "php" : "^7.1 || ^8.0",
-        "php-http/client-common": "^2.0",
+        "psr/http-message-implementation": "*",
+        "psr/http-factory-implementation": "*",
+        "psr/http-client-implementation": "*",
         "php-http/discovery": "^1.7",
-        "nyholm/psr7": "^1.0",
         "ext-json": "*"
     },
     "require-dev": {
-        "php-http/guzzle6-adapter": "^2.0",
+        "guzzlehttp/guzzle": "^7.0",
         "phpunit/phpunit": "6.* | 7.* | 8.* | 9.*"
     },
     "autoload": {
@@ -25,5 +26,8 @@
         "psr-4": {
             "MailerLiteApi\\Tests\\": "tests/"
         }
+    },
+    "conflict": {
+        "php-http/httplug": "< 2"
     }
 }

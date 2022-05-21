@@ -2,7 +2,6 @@
 
 namespace MailerLiteApi\Common;
 
-use Http\Client\HttpClient;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
@@ -25,9 +24,9 @@ class RestClient {
     /**
      * @param  string  $baseUrl
      * @param  string  $apiKey
-     * @param  \Http\Client\HttpClient|null  $httpClient
+     * @param  ClientInterface|null  $httpClient
      */
-    public function __construct($baseUrl, $apiKey, HttpClient $httpClient = null)
+    public function __construct($baseUrl, $apiKey, ClientInterface $httpClient = null)
     {
         $this->baseUrl = $baseUrl;
         $this->apiKey = $apiKey;
