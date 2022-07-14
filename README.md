@@ -29,7 +29,7 @@ composer require php-http/guzzle6-adapter
 
 ##### Manual (preferable for shared hostings)
 
-This way is preferable only if you are using shared hosting and do not have a possibility to use Composer. You will need to download [this archive](https://bit.ly/32jmi7M)(v0.2.3), extract it and place its contents in root folder of your project. The next step is the same as using Composer, you will need to require `vendor/autoload.php` file in your index.php and lets dive in!
+This way is preferable only if you are using shared hosting and do not have a possibility to use Composer. You will need to download the source of the latest release from [here](https://github.com/mailerlite/mailerlite-api-v2-php-sdk/releases), extract it and place its contents in the root folder of your project. The next step is the same as using Composer, you will need to require `vendor/autoload.php` file in your index.php and lets dive in!
 
 ## Usage examples
 
