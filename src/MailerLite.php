@@ -2,11 +2,10 @@
 
 namespace MailerLiteApi;
 
-use Http\Client\HttpClient;
-
 use MailerLiteApi\Common\ApiConstants;
 use MailerLiteApi\Common\RestClient;
 use MailerLiteApi\Exceptions\MailerLiteSdkException;
+use Psr\Http\Client\ClientInterface;
 
 /**
  * Class MailerLite
@@ -27,11 +26,11 @@ class MailerLite {
 
     /**
      * @param string|null $apiKey
-     * @param HttpClient $client
+     * @param ClientInterface|null $client
      */
     public function __construct(
         $apiKey = null,
-        HttpClient $httpClient = null
+        ClientInterface $httpClient = null
     ) {
         if (is_null($apiKey)) {
             throw new MailerLiteSdkException("API key is not provided");
