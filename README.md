@@ -83,7 +83,7 @@ Here is an example how to use [Guzzle](https://docs.guzzlephp.org/) instead of c
 $guzzle = new \GuzzleHttp\Client();
 $guzzleClient = new \Http\Adapter\Guzzle6\Client($guzzle);
 
-$mailerliteClient = new \MailerLiteApi\Mailerlite('your-api-key', $guzzleClient);
+$mailerliteClient = new \MailerLiteApi\MailerLite('your-api-key', $guzzleClient);
 ```
 
 ## Support and Feedback
